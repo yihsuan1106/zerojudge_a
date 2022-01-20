@@ -8,8 +8,8 @@
 #include <stdio.h>
 
 int main(int argc, const char * argv[]) {
-    char str[1000];
-    scanf("%s",str);
-    printf("hello, %s\n",str);
+    int a,b;
+    scanf("%d %d",&a,&b);
+    printf("%d\n",a+b);
     return 0;
 }
