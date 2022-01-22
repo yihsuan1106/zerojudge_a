@@ -1,0 +1,27 @@
+//
+//  main.c
+//  120
+//
+//  Created by 彭薏璇 on 2022/1/20.
+//
+
+#include <stdio.h>
+#include <math.h>
+
+int main(int argc, const char * argv[]) {
+    int a,b,c,ans,anss;
+    scanf("%d %d %d",&a,&b,&c);
+    if ((b*b-4*a*c)==0) {
+        ans=(-b-sqrt(b*b-4*a*c))/(2*a);
+        printf("Two same roots x=%d\n",ans);
+    }
+    else if((b*b-4*a*c)>0){
+        ans=(-b+sqrt(b*b-4*a*c))/(2*a);
+        anss=(-b-sqrt(b*b-4*a*c))/(2*a);
+        printf("Two different roots x1=%d , x2=%d\n",ans,anss);
+    }
+    else{
+        printf("No real root\n");
+    }
+    return 0;
+}
