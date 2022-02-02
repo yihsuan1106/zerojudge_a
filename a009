@@ -1,0 +1,16 @@
+//
+//  main.c
+//  20220202_1
+//
+//  Created by 彭薏璇 on 2022/2/2.
+//
+//7
+#include <stdio.h>
+
+int main(int argc, const char * argv[]) {
+    char a;
+    while (scanf("%c",&a)!=EOF) {
+        printf("%c",(a-7));
+    }
+    return 0;
+}
