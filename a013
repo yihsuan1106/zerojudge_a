@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char a[1000];
+int anss,ans[10];
+int main() {
+    int i;
+    int x=0,y=0;
+    for(int i=0;;i++){
+        step1:
+        scanf("%c",&a[i]);
+        if(a[i]==35) return 0;
+        switch (a[i]) {
+            case 'M':
+                if(a[i-1]=='C') x-=200;
+                else if(a[i-1]=='X') x-=20;
+                else if(a[i-1]=='I') x-=2;
+                x+=1000;
+                break;
+            case 'D':
+                if(a[i-1]=='C') x-=200;
+                else if(a[i-1]=='X') x-=20;
+                else if(a[i-1]=='I') x-=2;
+                x+=500;
+                break;
+            case 'C':
+                if(a[i-1]=='X') x-=20;
+                else if(a[i-1]=='I') x-=2;
+                x+=100;
+                break;
+            case 'L':
+                if(a[i-1]=='X') x-=20;
+                else if(a[i-1]=='I') x-=2;
+                x+=50;
+                break;
+            case 'X':
+                if(a[i-1]=='I') x-=2;
+                x+=10;
+                break;
+            case 'V':
+                x+=5;
+                if(a[i-1]=='I') x-=2;
+                break;
+            case 'I':
+                x+=1;
+                break;
+            case ' ':
+                y=x;
+                x=0;
+                break;
+            case '\n':
+                anss=abs(x-y);
+                y=0;
+                x=0;
+                goto step2;
+        }
+    }
+    step2:
+    if(anss==0){
+        printf("ZERO\n");
+        i=0;
+        memset(a, 0, 1000);
+        goto step1;
+    }
+    ans[4]=anss/1000;
+    ans[3]=(anss%1000)/100;
+    ans[2]=(anss%100)/10;
+    ans[1]=anss%10;
+    for(int z=ans[4];z>0;z--){
+        printf("M");
+    }
+    for(int z=3;z>0;z--){
+        if(ans[z]==9){
+            if(z==3) printf("CM");
+            else if(z==2) printf("XC");
+            else if(z==1) printf("IX");
+            ans[z]=0;
+        }
+        else if(ans[z]==4){
+            if(z==3) printf("CD");
+            else if(z==2) printf("XL");
+            else if(z==1) printf("IV");
+            ans[z]=0;
+        }
+        else if(ans[z]>=5){
+            if(z==3) printf("D");
+            else if(z==2) printf("L");
+            else if(z==1) printf("V");
+            ans[z]-=5;
+        }
+        for(i=ans[z];i>0;i--){
+            if(z==3) printf("C");
+            else if(z==2) printf("X");
+            else if(z==1) printf("I");
+        }
+    }
+    printf("\n");
+    i=0;
+    memset(a, 0, 1000);
+    goto step1;
+}
+
+
+//M CM XC VIII
+
+//73 86 88 76 67 68 77
+//'I','V','X','L','C','D','M'
+// 1   5   10  50 100 500 1000
